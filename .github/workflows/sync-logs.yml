@@ -2,14 +2,12 @@ name: Sync ERLC Command Logs to Google Sheets
 
 on:
   schedule:
-    - cron: '0/5 * * * *'  # every 5 minutes
+    - cron: '*/5 * * * *'
   workflow_dispatch:
 
 jobs:
   sync:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
-
     permissions:
       contents: write
 
@@ -22,7 +20,7 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Fetch and sync ERLC logs
+      - name: Fetch logs from ERLC
         env:
           ERLC_SERVER_KEY: ${{ secrets.ERLC_SERVER_KEY }}
           SHEETS_WEBHOOK_URL: ${{ secrets.SHEETS_WEBHOOK_URL }}
@@ -32,7 +30,7 @@ jobs:
       - name: Commit updated state
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "Update ERLC log sync state"
+          commit_message: "Sync ERLC command logs"
           file_pattern: data/seen.json
           commit_user_name: "ERLC Sync Bot"
           commit_user_email: "bot@github-actions.local"
