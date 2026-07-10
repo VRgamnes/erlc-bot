@@ -1,9 +1,9 @@
 name: Sync ERLC Command Logs to Google Sheets
-#see if works
+
 on:
   schedule:
-    - cron: "*/5 * * * *"  # every 5 minutes
-  workflow_dispatch: {}    # lets you run it manually
+    - cron: '0/5 * * * *'  # every 5 minutes
+  workflow_dispatch:
 
 jobs:
   sync:
@@ -14,13 +14,13 @@ jobs:
       contents: write
 
     steps:
-      - name: Check out repo
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Set up Node
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: '20'
 
       - name: Fetch and sync ERLC logs
         env:
