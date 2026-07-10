@@ -1,5 +1,5 @@
 name: Sync ERLC Command Logs to Google Sheets
-
+#see if works
 on:
   schedule:
     - cron: "*/5 * * * *"  # every 5 minutes
