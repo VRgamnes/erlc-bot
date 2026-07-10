@@ -18,9 +18,9 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
 
-      - name: Fetch logs from ERLC
+      - name: Fetch ERLC logs
         env:
           ERLC_SERVER_KEY: ${{ secrets.ERLC_SERVER_KEY }}
           SHEETS_WEBHOOK_URL: ${{ secrets.SHEETS_WEBHOOK_URL }}
