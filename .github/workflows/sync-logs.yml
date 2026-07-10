@@ -2,7 +2,7 @@ name: Sync ERLC Command Logs to Google Sheets
 
 on:
   schedule:
-    - cron: "*/10 * * * *"  # every 10 minutes
+    - cron: "*/5 * * * *"  # every 5 minutes
   workflow_dispatch: {}      # lets you run it manually from the Actions tab
 
 permissions:
@@ -11,6 +11,7 @@ permissions:
 jobs:
   sync:
     runs-on: ubuntu-latest
+
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
