@@ -1,9 +1,9 @@
 name: Sync ERLC Command Logs to Google Sheets
 
 on:
+  workflow_dispatch: {}
   schedule:
-    - cron: "*/6 * * * *"  # every 10 minutes
-  workflow_dispatch: {}      # lets you run it manually from the Actions tab
+    - cron: "17 */6 * * *"  # backup only, in case the external trigger ever fails
 
 permissions:
   contents: write
@@ -28,9 +28,9 @@ jobs:
         run: node scripts/fetch-logs.js
 
       - name: Commit updated state
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/seen.json
-          git diff --staged --quiet || git commit -m "Update sync state"
-          git push
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update sync state"
+          file_pattern: data/seen.json
+          commit_user_name: "ERLC Sync Bot"
+          commit_user_email: "bot@github-actions.local"
