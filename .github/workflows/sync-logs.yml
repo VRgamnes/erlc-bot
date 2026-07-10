@@ -21,9 +21,6 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Install packages
-        run: npm install
-
       - name: Fetch and sync to Sheets
         env:
           ERLC_SERVER_KEY: ${{ secrets.ERLC_SERVER_KEY }}
