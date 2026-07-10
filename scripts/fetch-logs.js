@@ -15,7 +15,7 @@ const SERVER_KEY = process.env.ERLC_SERVER_KEY;
 const SHEETS_WEBHOOK_URL = process.env.SHEETS_WEBHOOK_URL;
 const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
-const API_BASE = "https://api.policeroleplay.community/v1";
+const API_BASE = "https://api.erlc.gg/";
 const SEEN_FILE = path.join(process.cwd(), "data", "seen.json");
 const MAX_TRACKED = 8000; // how many fingerprints to remember, to avoid unbounded growth
 
